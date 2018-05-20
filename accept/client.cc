@@ -43,7 +43,7 @@ int tcp_client(const char* host, int port) {
   }
   int ret = connect(fd, (struct sockaddr *)&svr_addr, sizeof(struct sockaddr));
   if (ret < 0) {
-    debug("connect failed:%s\n", strerror(errno));
+    debug("connect [%s:%d] failed:%s\n", host, port, strerror(errno));
     close(fd);
     return -1;
   }
@@ -79,9 +79,9 @@ void ENV_DEL(int efd, int fd) {
 int main(int argc, char* argv[]) {
   const char* host = "127.0.0.1";
   int port = 9001;
-  if (argc > 3) {
-    port = atoi(argv[1]);
-    host = argv[2];
+  if (argc > 2) {
+    host = argv[1];
+    port = atoi(argv[2]);
   }
 
   char buff[128] = {0};

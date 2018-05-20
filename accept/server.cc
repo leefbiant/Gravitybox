@@ -29,7 +29,7 @@
 
 int main(int argc, char* argv[]) {
   int port = 9001;
-  if (argc > 2) {
+  if (argc > 1) {
     port = atoi(argv[1]);
   }
 
