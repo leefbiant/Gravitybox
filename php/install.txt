@@ -67,3 +67,11 @@ DirectoryIndex index.html index.shtml index.cgi index.php index.phtml index.php3
 
 AddType application/x-httpd-php .php .php3 .phtml .inc
 AddType application/x-httpd-php-source .phps
+
+
+
+修改环境变量
+PATH=$PATH:$HOME/bin:/usr/local/php7/bin
+
+curl -sS https://getcomposer.org/installer | php
+
