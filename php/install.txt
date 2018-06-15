@@ -1,0 +1,69 @@
+yum groupinstall "Development tools"
+
+yum install libxml2-devel gd-devel libmcrypt-devel libcurl-devel openssl-devel
+yum install -y httpd-devel
+yum install libxslt-devel
+
+wget http://cn2.php.net/distributions/php-7.0.5.tar.gz
+
+tar -zxvf php-7.0.5.tar.gz
+cd php-7.0.5
+
+
+./configure --prefix=/usr/local/php7 \
+                     --with-curl \
+                     --with-freetype-dir \
+                     --with-gd \
+                     --with-gettext \
+                     --with-iconv-dir \
+                     --with-kerberos \
+                     --with-libdir=lib64 \
+                     --with-libxml-dir \
+                     --with-mysqli \
+                     --with-openssl \
+                     --with-pcre-regex \
+                     --with-pdo-mysql \
+                     --with-pdo-sqlite \
+                     --with-pear \
+                     --with-png-dir \
+                     --with-xmlrpc \
+                     --with-xsl \
+                     --with-zlib \
+                     --with-apxs2 \
+                     --enable-fpm \
+                     --enable-bcmath \
+                     --enable-libxml \
+                     --enable-inline-optimization \
+                     --enable-gd-native-ttf \
+                     --enable-mbregex \
+                     --enable-mbstring \
+                     --enable-opcache \
+                     --enable-pcntl \
+                     --enable-shmop \
+                     --enable-soap \
+                     --enable-sockets \
+                     --enable-sysvsem \
+                     --enable-xml \
+                     --enable-zip \
+                     --with-pdo-mysql
+
+make
+make install
+
+/usr/local/php7/bin/php --version
+
+cp php.ini-development /usr/local/php7/lib/php.ini
+
+
+vim /etc/httpd/conf/httpd.conf
+
+LoadModule php5_module /usr/lib64/httpd/modules/libphp7.so
+
+<FilesMatch \.php$>
+SetHandler application/x-httpd-php
+</FilesMatch>
+
+DirectoryIndex index.html index.shtml index.cgi index.php index.phtml index.php3
+
+AddType application/x-httpd-php .php .php3 .phtml .inc
+AddType application/x-httpd-php-source .phps
