@@ -40,7 +40,6 @@ AddType application/x-httpd-php-source .phps
 修改环境变量
 PATH=$PATH:$HOME/bin:/usr/local/php7/bin
 
-curl -sS https://getcomposer.org/installer | php
 
 
 ---------------------------------------------华丽分割线-----------------------------
@@ -56,4 +55,42 @@ wget http://nginx.org/download/nginx-1.9.9.tar.gz
 ./configure --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.35
 
 make && make install
+
+
+------------------------------------------------------
+安装 composer
+curl -sS https://getcomposer.org/installer | php
+
+安装 laravel
+composer global require "laravel/installer"
+
+新建一个项目 
+laravel new blog
+
+启动项目
+php artisan serve --host=192.168.50.65 --port=8000
+
+------------------------------------------------------
+初始化认证模块
+php artisan make:auth
+
+
+初始化数据库:
+php artisan make:migration create_tasks_table --create=tasks 
+php artisan migrate
+
+如果遇到  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+修改 app/Providers/AppServiceProvider.php
+添加
+use Illuminate\Support\Facades\Schema;
+
+    public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+    }
+
+config/database.php 
+
+'engine' => 'InnoDB ROW_FORMAT=DYNAMIC'
 
