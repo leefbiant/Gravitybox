@@ -42,3 +42,18 @@ PATH=$PATH:$HOME/bin:/usr/local/php7/bin
 
 curl -sS https://getcomposer.org/installer | php
 
+
+---------------------------------------------华丽分割线-----------------------------
+
+nginx 安装
+首先要安装 PCRE
+wget http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.gz
+./configure
+make && make install
+
+安装 Nginx
+wget http://nginx.org/download/nginx-1.9.9.tar.gz
+./configure --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.35
+
+make && make install
+
