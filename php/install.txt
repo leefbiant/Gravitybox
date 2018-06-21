@@ -94,3 +94,8 @@ config/database.php
 
 'engine' => 'InnoDB ROW_FORMAT=DYNAMIC'
 
+
+创建数据库表
+php artisan make:migration create_comments_table
+编辑 database/migrations/下面的数据库脚本
+执行创建命令 php artisan migrate 
