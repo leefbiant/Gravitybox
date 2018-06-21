@@ -1,0 +1,15 @@
+mysql 授权
+
+GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;  
+FLUSH   PRIVILEGES; 
+
+
+
+[client]
+default-character-set = utf8
+[mysqld]
+default-character-set = utf8
+
+
+// 表复制
+insert ignore into db_bbex_livenews.projects(project_id, name, symbol) select id, name, symbol from db_ico_market.projects;

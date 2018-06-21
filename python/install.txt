@@ -1,0 +1,19 @@
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+
+wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
+
+tar -xvzf Python-3.6.5.tgz
+cd Python-3.6.5
+
+./configure 
+
+make && make install
+
+python 爬虫相关
+https://cuiqingcai.com/1052.html
+
+
+安装 virtualenv
+pip3 install virtualenv
+
+virtualenv --system-site-packages py_env
