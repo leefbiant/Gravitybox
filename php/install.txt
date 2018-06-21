@@ -42,3 +42,23 @@ PATH=$PATH:$HOME/bin:/usr/local/php7/bin
 
 curl -sS https://getcomposer.org/installer | php
 
+
+
+-----------------------------华丽分割线--------------------------
+
+Laravel 5.5 框架
+1 安装： 
+  composer global require "laravel/installer"
+2 生成一个项目
+  laravel new blog
+3 启动服务
+  php artisan serve  --host=0.0.0.0  --port=8000
+
+  ---------------------------------------------------
+  php 增加图片处理模块
+
+  yum install php-gd 
+  yum install libpng libpng-devel libjpeg-turbo libjpeg-turbo-devel freetype freetype-devel gd
+  编译源码
+  ./configure --prefix=/usr/local/php7  --with-curl  --with-freetype-dir  --with-gd  --with-gettext  --with-iconv-dir  --with-kerberos  --with-libdir=lib64  --with-libxml-dir  --with-mysqli  --with-openssl  --with-pcre-regex  --with-pdo-mysql  --with-pdo-sqlite  --with-pear  --with-png-dir  --with-xmlrpc  --with-xsl  --with-zlib  --with-apxs2  --enable-fpm  --enable-bcmath  --enable-libxml  --enable-inline-optimization  --enable-gd-native-ttf  --enable-mbregex  --enable-mbstring  --enable-opcache  --enable-pcntl    --enable-shmop  --enable-soap  --enable-sockets  --enable-sysvsem  --enable-xml  --enable-zip  --with-pdo-mysql --with-jpeg-dir
+
