@@ -99,3 +99,9 @@ config/database.php
 php artisan make:migration create_comments_table
 编辑 database/migrations/下面的数据库脚本
 执行创建命令 php artisan migrate 
+
+
+创建一个 对应 create_comments 表对应的处理模块
+php artisan make:model Models/CreateComment
+
+
