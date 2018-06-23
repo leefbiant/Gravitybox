@@ -1,0 +1,18 @@
+git 增加颜色
+
+[color]
+diff = auto
+status = auto
+branch = auto
+interactive = auto
+ui = true
+pager = true
+
+# 或者更精细的控制
+[color "status"]
+added = green
+changed = red bold
+untracked = magenta bold
+
+[color "branch"]
+remote = yellow
