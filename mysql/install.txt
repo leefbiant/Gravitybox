@@ -2,3 +2,10 @@ mysql 授权
 
 GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;  
 FLUSH   PRIVILEGES; 
+
+
+
+[client]
+default-character-set = utf8
+[mysqld]
+default-character-set = utf8

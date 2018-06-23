@@ -105,3 +105,39 @@ php artisan make:migration create_comments_table
 php artisan make:model Models/CreateComment
 
 
+----------------------------------------
+需要用到框架修改数据库
+composer require doctrine/dbal
+
+php artisan make:migration alter_table --table=news_lives 
+$table->string('content', '2048')->default('')->change();
+$table->string('news_id')->default('')->unique()->add(); 
+php artisan migrate    
+
+------------------------------------------
+
+定时任务 Schedule
+php artisan make:command news_live
+
+修改 app/Console/Commands/news_live.php
+
+protected $signature = 'news_live:jinse';
+
+handle 处写处理函数
+
+app/Console/Kernel.php
+
+commands 注册
+\App\Console\Commands\news_live::class,
+
+schedule 里面增加调用逻辑
+protected function schedule(Schedule $schedule)
+{
+  $schedule->command('news_live:jinse')
+    ->timezone('Asia/Shanghai')
+    ->everyMinute();
+}
+
+
+vi /etc/crontab 
+* * * * * root /usr/local/php7/bin/php  /var/www/http_api/artisan schedule:run >> /dev/null 2>&1

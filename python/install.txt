@@ -11,3 +11,9 @@ make && make install
 
 python 爬虫相关
 https://cuiqingcai.com/1052.html
+
+
+安装 virtualenv
+pip3 install virtualenv
+
+virtualenv --system-site-packages py_env
