@@ -138,6 +138,43 @@ protected function schedule(Schedule $schedule)
     ->everyMinute();
 }
 
+添加 redis 倚赖
+composer require predis/predis
+
+增加HTTP库 
+composer require guzzlehttp/guzzle
+
 
 vi /etc/crontab 
 * * * * * root /usr/local/php7/bin/php  /var/www/http_api/artisan schedule:run >> /dev/null 2>&1
+
+--------------------------------安装admin插件-------------------------------
+
+新建项目
+laravel new admin_test
+
+安装插件
+composer require encore/laravel-admin "1.5.*"
+
+发布资源
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+
+安装资源
+php artisan admin:install
+
+划重点 安装help插件
+composer require laravel-admin-ext/helpers
+可视化管理
+http://192.168.50.66:86/admin/helpers/scaffold
+
+config/admin.php
+'upload'  => [
+
+'disk' => 'admin',
+
+  'directory'  => [
+  'image'  => 'image',
+  'file'   => 'file',
+  ],
+  ],
+
