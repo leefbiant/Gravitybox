@@ -9,3 +9,7 @@ FLUSH   PRIVILEGES;
 default-character-set = utf8
 [mysqld]
 default-character-set = utf8
+
+
+// 表复制
+insert ignore into db_bbex_livenews.projects(project_id, name, symbol) select id, name, symbol from db_ico_market.projects;
