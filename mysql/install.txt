@@ -13,3 +13,7 @@ default-character-set = utf8
 
 // 表复制
 insert ignore into db_bbex_livenews.projects(project_id, name, symbol) select id, name, symbol from db_ico_market.projects;
+
+// mysql 导出导入
+mysql -uroot -p123456 db_ico_market > db_ico_market.sql 
+mysql -uroot -p123456 db_ico_market < db_ico_market.sql 

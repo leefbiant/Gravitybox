@@ -105,6 +105,9 @@ php artisan make:migration create_comments_table
 php artisan make:model Models/CreateComment
 
 
+创建一个路由处理模块
+php artisan make:controller SyncLivenews
+
 ----------------------------------------
 需要用到框架修改数据库
 composer require doctrine/dbal
@@ -166,6 +169,9 @@ php artisan admin:install
 composer require laravel-admin-ext/helpers
 可视化管理
 http://192.168.50.66:86/admin/helpers/scaffold
+
+在app/Admin/Controllers/IcoMarkets下创建 LiveNewsController 控制器
+php artisan admin:make IcoMarkets\\LiveNewsController
 
 config/admin.php
 'upload'  => [
