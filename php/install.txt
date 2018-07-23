@@ -204,3 +204,7 @@ config/admin.php
   ],
   ],
 
+
+///////////////////////////////// andmin 创建一个 模型和对应的Controller
+php artisan make:model Models\\IcoMarkets\\News
+php artisan admin:make IcoMarkets\\NewsController --model=App\\Models\\IcoMarkets\\News
