@@ -208,3 +208,8 @@ config/admin.php
 ///////////////////////////////// andmin 创建一个 模型和对应的Controller
 php artisan make:model Models\\IcoMarkets\\News
 php artisan admin:make IcoMarkets\\NewsController --model=App\\Models\\IcoMarkets\\News
+
+///////////////////////////////////////PHP踩坑/////////////////////////////
+laravel 创建了一个定时任务 运行用户是root
+laravel 在服务器上运行的是其他用户，导致隔天总会出现日志没有权限写入
+解决方法： 建立统一的PHP运行用户，所有PHP程序统一用这个用户运行
