@@ -213,3 +213,25 @@ php artisan admin:make IcoMarkets\\NewsController --model=App\\Models\\IcoMarket
 laravel 创建了一个定时任务 运行用户是root
 laravel 在服务器上运行的是其他用户，导致隔天总会出现日志没有权限写入
 解决方法： 建立统一的PHP运行用户，所有PHP程序统一用这个用户运行
+
+===============================================================
+centos7 yum安装php
+
+卸载之前的PHP
+yum remove php*
+
+安装源
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+
+查看可用版本
+yum search php7
+
+安装PHP7.2
+yum install php72w
+
+安装php7.2插件
+yum install php72w*
+
+检查版本
+php -v
