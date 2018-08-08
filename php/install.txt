@@ -65,7 +65,7 @@ curl -sS https://getcomposer.org/installer | php
 -----------------------------华丽分割线--------------------------
 
 Laravel 5.5 框架
-1 安装： 
+1 安装：
   composer global require "laravel/installer"
 2 生成一个项目
   laravel new blog
@@ -75,7 +75,7 @@ Laravel 5.5 框架
   ---------------------------------------------------
   php 增加图片处理模块
 
-  yum install php-gd 
+  yum install php-gd
   yum install libpng libpng-devel libjpeg-turbo libjpeg-turbo-devel freetype freetype-devel gd
   编译源码
   ./configure --prefix=/usr/local/php7  --with-curl  --with-freetype-dir  --with-gd  --with-gettext  --with-iconv-dir  --with-kerberos  --with-libdir=lib64  --with-libxml-dir  --with-mysqli  --with-openssl  --with-pcre-regex  --with-pdo-mysql  --with-pdo-sqlite  --with-pear  --with-png-dir  --with-xmlrpc  --with-xsl  --with-zlib  --with-apxs2  --enable-fpm  --enable-bcmath  --enable-libxml  --enable-inline-optimization  --enable-gd-native-ttf  --enable-mbregex  --enable-mbstring  --enable-opcache  --enable-pcntl    --enable-shmop  --enable-soap  --enable-sockets  --enable-sysvsem  --enable-xml  --enable-zip  --with-pdo-mysql --with-jpeg-dir
@@ -84,7 +84,7 @@ Laravel 5.5 框架
 安装 laravel
 composer global require "laravel/installer"
 
-新建一个项目 
+新建一个项目
 laravel new blog
 
 启动项目
@@ -96,7 +96,7 @@ php artisan make:auth
 
 
 初始化数据库:
-php artisan make:migration create_tasks_table --create=tasks 
+php artisan make:migration create_tasks_table --create=tasks
 php artisan migrate
 
 如果遇到  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
@@ -110,7 +110,7 @@ use Illuminate\Support\Facades\Schema;
         Schema::defaultStringLength(191);
     }
 
-config/database.php 
+config/database.php
 
 'engine' => 'InnoDB ROW_FORMAT=DYNAMIC'
 
@@ -118,7 +118,7 @@ config/database.php
 创建数据库表
 php artisan make:migration create_comments_table
 编辑 database/migrations/下面的数据库脚本
-执行创建命令 php artisan migrate 
+执行创建命令 php artisan migrate
 
 
 创建一个 对应 create_comments 表对应的处理模块
@@ -132,10 +132,10 @@ php artisan make:controller SyncLivenews
 需要用到框架修改数据库
 composer require doctrine/dbal
 
-php artisan make:migration alter_table --table=news_lives 
+php artisan make:migration alter_table --table=news_lives
 $table->string('content', '2048')->default('')->change();
-$table->string('news_id')->default('')->unique()->add(); 
-php artisan migrate    
+$table->string('news_id')->default('')->unique()->add();
+php artisan migrate
 
 ------------------------------------------
 
@@ -164,11 +164,11 @@ protected function schedule(Schedule $schedule)
 添加 redis 倚赖
 composer require predis/predis
 
-增加HTTP库 
+增加HTTP库
 composer require guzzlehttp/guzzle
 
 
-vi /etc/crontab 
+vi /etc/crontab
 * * * * * root /usr/local/php7/bin/php  /var/www/http_api/artisan schedule:run >> /dev/null 2>&1
 
 --------------------------------安装admin插件-------------------------------
@@ -235,3 +235,31 @@ yum install php72w*
 
 检查版本
 php -v
+
+====================================================================
+
+laravel 模型表单中关多张表
+模型中定义一个其他的类关联本模型中对应的表
+
+class Kycs extends Model{
+  protected $guarded = ['id'];
+  protected $connection = 'mysql_user';
+  protected $table = 'kycs';
+  public function user()
+  {
+    return $this->belongsTo(BbexUser::class, 'id', 'uid');
+  }
+}
+
+本模型中添加方法关联另一个模型表
+public function kycs()
+{
+  return $this->hasOne(Kycs::class, 'uid', 'id');
+}
+
+模型表单中使用
+$grid->column('kycs.fullname', '姓名');
+
+筛选filter中使用
+$filter->equal('kycs.img_certify', 'kyc状态');
+
